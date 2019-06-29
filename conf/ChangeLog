@@ -1,0 +1,32 @@
+2009-08-08  Moritz  <moritz@gnu.org>
+
+	* poldi.conf.skel: Fixed log-file path.
+
+2008-08-17  Moritz  <moritz@gnu.org>
+
+	* Makefile.am: Added several missing instances of DESTDIR. Thanks
+	to Joachim Breitner.
+
+2008-08-07  Moritz  <moritz@gnu.org>
+
+	* poldi.conf.skel: New file.
+	* Makefile.am (install-conf-skeleton): Install poldi.conf.skel.
+	* users.skel: Removed example entry.
+
+2008-04-13  Moritz  <moritz@gnu.org>
+
+	* README.keys: Cosmetics.
+
+2008-04-05  Moritz  <moritz@gnu.org>
+
+	* README.keys, users.skel: New files.
+	* Makefile.am (install-conf-skeleton): use "localdb" prefix;
+	install new files.
+
+2005-12-11  Moritz Schulte  <moritz@g10code.com>
+
+	* Makefile.am: Touch user database file.
+
+2005-09-25  Moritz Schulte  <moritz@g10code.com>
+
+	* Makefile.am: New file.

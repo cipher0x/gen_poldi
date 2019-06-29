@@ -1,0 +1,2 @@
+auth		required	/usr/lib/x86_64-linux-gnu/security/pam_poldi.so
+session		required	/usr/lib/x86_64-linux-gnu/security/pam_poldi.so

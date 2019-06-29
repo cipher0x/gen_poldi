@@ -1,0 +1,111 @@
+                                                                -*- outline -*-
+
+Changes since version 0.4.1:
+
+* poldi-ctrl is removed
+  Please use gpg-connect-agent instead.
+
+* For backward compatibility of sudo and screen unlock
+  In GnuPG 2.1, the environment variable GPG_AGENT_INFO is gone.  And
+  now, Poldi's default is invoking scdaemon directly.  Still, there
+  are use cases (like sudo and screen unlock) which expect connecting
+  user's gpg-agent.  For this purpose, Poldi now distinguishes a case
+  where pam_username == username_of_process_uid.  Only for such a case,
+  Poldi tries to find scdaemon under gpg-agent.
+
+* Poldi invokes scdaemon to connect it through pipe
+  Older Poldi has a feature of connecting to scdaemon with help of
+  gpg-agent using the GPG_AGENT_INFO enviornment variable.  In GnuPG
+  2.1, the environment variable GPG_AGENT_INFO is gone and scdaemon no
+  longer keeps locking the reader after card removal, it is good to
+  always invoke scdaemon for the authentication by default.  If there
+  is an existing scdaemon with card inserted, a failure is expected
+  and this is safer fallback.  That's because Poldi should not connect
+  to a smartcard which is in use for other purpose and possibly
+  already authenticated.
+
+* New option "scdaemon-options"
+  Added a new option "scdaemon-options", which can be used to specify
+  the scdaemon configuration file to use for newly spawned scdaemon
+  instances.
+
+* New option "modify-environment"
+  Added a new option "modify-environment", which causes Poldi to add
+  certain Poldi related environment variables to the PAM environment.
+  During the login process they can be used for whatever customization
+  which one can think of: e.g. deriving the locale environment from
+  the card's LANG data item or printing the signature counter on
+  login.  As of now, the following environment variables are set:
+
+    PAM_POLDI_AUTHENTICATED=""
+    PAM_POLDI_SERIALNO="<SERIALNO>"
+    PAM_POLDI_LANG="<LANG>"
+
+* New option "quiet"
+  Added a new option "quiet", which causes Poldi to skip most of the
+  PAM info messages during authentication.  Careful: the exact
+  semantics of this option might change.  Primarily this is a
+  workaround for programs like GDM, which collect these info messages
+  and put them in a dialog box with an OK-button.  When using e.g. GDM
+  with the quiet option, authentication should work without any
+  interaction.
+
+Changes since version 0.3:
+
+* Many parts have been rewritten and/or reorganized
+
+* GPLv3+
+  Changed License to GPL v3 or later.
+
+* SCdaemon support
+  Poldi uses the scdaemon from now on instead of talking to the
+  smartcard directly.
+
+* Authentication methods
+  Implemented abstraction layer for "authentication methods".  The
+  previous authentication process is now encapsulated in an
+  authentication method named "localdb".
+
+* X509
+  Added another authentication method named "x509", which interacts
+  with Dirmngr in order to provide authentication through a X509 PKI.
+
+* i18n
+  Added support for internationalization.
+  Added german translation.
+
+Changes since version 0.2:
+
+* Smartcard to account mapping:
+  In the past, Poldi implemented a 1:1 mapping between smartcards and
+  system accounts.  As of now, Poldi implements a M:N mapping, meaning
+  that one user can have multiple cards and that several users can
+  share a card.
+
+  Instead of "add-user" and "remove-user" commands we now have:
+   - "register-card"
+   - "unregister-card"
+   - "list-cards"
+   - "associate"
+   - "disassociate".
+
+* Better support for Version 0x0101 cards:
+  no Admin PIN necessary for public key retrival.
+
+* Work around a problem in libpam_misc, which causes the PIN prompt to
+  appear to late.
+
+* Improved documentation.
+
+* Support for creating a skeleton configuration hierarchy.
+
+* Support for a timeout while waiting for smartcard insertion.
+
+* Removed `fake-wait-for-card'-feature.
+
+* Dropped ugly `install-pam-module' mechanism; now the PAM module gets
+  installed automatically during `make install'.
+
+* Improved error reporting.
+
+* Code cleanup: heavily improved code documentation.

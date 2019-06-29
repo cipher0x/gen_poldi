@@ -1,0 +1,66 @@
+2009-08-08  Moritz  <moritz@gnu.org>
+
+	* poldi.texi (Configuration): Documented scdaemon-program and
+	scdaemon-options.
+
+2009-05-16  Moritz  <moritz@gnu.org>
+
+	* poldi.texi (XScreensaver): Added note for GNOME Screensaver.
+	(Configuration): Documented "quiet"-option and
+	"modify-environment"-option.
+
+2009-04-08  Marcus Brinkmann  <marcus@g10code.de>
+
+	* poldi.texi (Notes on Applications): Fix section menu.
+
+2009-03-29  Moritz  <moritz@gnu.org>
+
+	* poldi.texi (XScreensaver): New section.
+
+2009-02-16  Moritz  <moritz@gnu.org>
+
+	* poldi.texi (Configuration): Documentation bug fix: the option is
+	named "log-file", not "logfile". Thanks, Malte.
+
+2008-12-22  Moritz  <moritz@gnu.org>
+
+	* poldi.texi (Overview): Use footnotes plus cosmetic change.
+
+2008-04-20  Moritz  <moritz@gnu.org>
+
+	* poldi.texi: Several smaller fixes.
+
+2008-04-13  Moritz  <moritz@gnu.org>
+
+	* poldi.texi: Many improvements (primarily in respect to X509
+	auth).
+
+2008-04-05  Moritz  <moritz@gnu.org>
+
+	* poldi.tex: Updated and improved.
+
+2008-01-04  Moritz Schulte  <moritz@gnu.org>
+
+	* poldi.texi: Started with a major reorganization of this manual.
+
+2006-01-09  Moritz Schulte  <moritz@g10code.com>
+
+	* poldi.texi: Mention kdm.
+
+2005-12-11  Moritz Schulte  <moritz@g10code.com>
+
+	* poldi.texi: Improved documentation.
+
+2005-12-03  Moritz Schulte  <moritz@g10code.com>
+
+	* poldi.texi: Remove the paragraph saying that Poldi implements a
+	1:1 mapping between cards and accounts.
+
+2005-10-15  Moritz Schulte  <moritz@g10code.com>
+
+	* poldi.texi (Installing): Improved.
+
+2005-10-08  Moritz Schulte  <moritz@g10code.com>
+
+	* poldi.texi: Improve documentation, add application-specific
+	information.

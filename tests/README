@@ -1,0 +1,84 @@
+README for pam-test
+===================
+
+  Usage: pam-test [options] <PAM service name>
+  Test PAM authentication.
+  
+  Options:
+   -h, --help      print help information
+   -v, --version   print version information
+   -u, --username  specify username for authentication
+  
+  Report bugs to <moritz@gnu.org>.
+
+pam-test is a small utility suitable for testing authentication
+through PAM. pam-test is not Poldi specific at all; rather it's a
+generic tool for testing authentication through PAM.
+
+PAM authentication methods are identified by a "service name"
+(e.g. "su", "login", "gdm"). Testing authentication is thus only a
+matter of typing:
+
+  $ ./pam-test SERVICENAME
+
+Testing Poldi authentication can be achieved by defining a new service
+name "poldi" using pam_poldi.so and then typing:
+
+  $ ./pam-test poldi
+
+This is how a successful run looks like:
+
+  $ ./pam-test poldi
+  Waiting for card...
+  Trying authentication as user `moritz'...
+  Authentication succeeded
+  Authenticated as user `moritz'
+  $ 
+
+Have fun.
+
+
+
+README for session-test
+===================
+  Usage: run-pam-session-test.sh [options] <user name>
+  Test PAM authentication.
+  
+  Options:
+   -h, --help      print help information
+   -v, --version   print version information
+   
+   This test must be ran with an account that will have permission
+   to access the gpg and scdaemon sockets created for the user
+   specified in the command. To ensure a proper test you will need
+   to send the SIGTERM signal to any gpg-agent and scdeamon processes
+   running under the user.
+   
+   You will need to update the path in the ./services/other folder to
+   point to the pam_poldi.so module you are testing.
+   
+   session-test is a utility used to test the session component 
+   of the poldi module. It requires the libpamtest library found 
+   in the libpam-wrapper library and a properly 
+   configured openpgp card/usb key. 
+   
+   session-test is invoked using the script run-pam-session-test.sh
+   This is becuase libpamtest needs to preload a wrapper around libpam.
+   libpamtest also requires exec privileges in the directory /tmp
+   
+   session-test sets the following exit values to indicate run status:
+   
+	PAMTEST_ERR_OK:           0
+	PAMTEST_ERR_START:        1
+	PAMTEST_ERR_CASE:         2
+	PAMTEST_ERR_OP:           3
+	PAMTEST_ERR_END:          4
+	PAMTEST_ERR_KEEPHANDLE:   5
+	
+	unknown error             all other postiive numbers
+	
+	Success is indicated by an exit status of 0
+
+	
+	
+	
